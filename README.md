@@ -160,7 +160,7 @@ By Robert C.Martin: Uncle Bob
 - Don't have journal comments: That's what `git log` is for.
 - Avoid positional markers: Fancy design where what is.
 
-# Video #10 [The Art of Code Comments - Sarah Drasner](https://www.youtube.com/watch?v=yhF7OmuIILc)
+# Video #10 | [The Art of Code Comments - Sarah Drasner](https://www.youtube.com/watch?v=yhF7OmuIILc)
 
 > The comments are an excuse for not writing the code better to begin with.
 
@@ -193,4 +193,91 @@ There is no one true way of writing comments. There is no YES comments or NO com
 
 - We spend time writing the comment that could be better spent making the code a little cleaner to begin with.
 
-# Video 11 | [Writing Readable Code](https://www.youtube.com/watch?v=SPlS4kW0UbE)
+# Video #11 | [Writing Readable Code](https://www.youtube.com/watch?v=SPlS4kW0UbE)
+
+- Have and follow a style guide.
+- Limit line length (80 characters)
+- Bunch of parameters, split them up, one for each line.
+- Long lines are hard to read.
+- Write code that doesn't need comments.
+- Make the code more obvious by assigning it to a function expression with a proper name or to a variable.
+- Comments -> Logging
+  
+- Naming: `getData()` while fetching from a external source is not a good naming convention. Instead use `fetchData()`. `getData` is a simple method like an accessor that doesn't take long. So wrong naming convention. So computatinally extensive process could be name as `generateToken` or `createToken`.
+- Extra 5-10 mins spent on coming up with a better name will go a long way. Decrease technical debt and maintenence.
+
+> All code in any code-base should look like a single person typed it, no matter how many people contributed.
+>
+> -- <cite>idiomatic.js</cite>
+
+- When you have a variable or function that it returns a boolean, make crystal clear that this value or functions holds boolean. It can be only `true` or `false`, no side-effects.
+  - Use prefix like: `shouldShowOneDeiveImport`, `isEmpty`, `canCreateDocuments`, `hasLicense` etc
+
+- Boolean Trap: 
+  
+  ```javascript
+  page.getSVG(dpi, true, false)
+  ``` 
+  boolean parameters.
+- Deobfuscate Boolean Parameters. Use a object when a method takes 4 arguments.
+  ```javascript
+  page.getSVG({
+    imageDpi: dpi,
+    includePageBackground: true,
+    compress: false
+  })
+  ```
+- Or annotate a line for each if you don't want to use an object or it isn't feasible.
+
+  ```javascript
+  page.getSVG({
+    /* imageDpi */ dpi,
+    /* includePageBackground */ true,
+    /* compress */ false
+  })
+  ```
+
+- Its all about readability.
+- Practicing readability
+  - Code reviews: ask for feedback: drop a comment and ask for a better name.
+  - Code reviews: give feedback
+  - exercism.io
+
+# Video #12 | [Writing Clean Code - Intention-Revealing Names](https://www.youtube.com/watch?v=tePvLAefzmQ)
+
+- Always use descriptive, intention revealing names when creating a variable, function, classes, objects etc.
+- Not a good idea to use numbers in a variable.
+
+# Video #13 | [Code Like a Pro : Functions | How to Write Code Professionally (With Examples)](https://www.youtube.com/watch?v=bF9yP9rI_Bs)
+
+Readable, Searchable, Understandable code = Maintainable Code.
+
+- If a function is more than 10 lines long, consider refactoring.
+- Functions and methods are verb and we need to treat them as such.
+- Long variable names are descriptive variable names.
+- Eliminate global variable using a function and get the data using by returning and assigning to a variable.
+
+```javascript
+const getValues = (): <any[]> {
+  const calc = ...
+  const done = ...
+  const edit = ...
+  return [calc, done, edit]
+}
+
+const doSomething = () : void => {
+  const [calculations, doneWork, editText] = getValues()
+}
+```
+
+- Take functional approach and eliminate side effects.
+
+- Confused instructor. :<
+
+# Quick bits
+
+- YAGNI: You Aren't Gonna Need It is a principle of extreme programmer's shouldn't add functionality until it's deemed necessary.
+
+- KISS: Keep It Simple, Stupid as a design principle states that most systems work best if they are kept simple rather than made complicated. Therefore, simplicity should be a key goal in design, and that unnecessary complexity should be avoided. 
+
+# Video #15 | [Simplicity: Not Just For Beginners (or How To Write Simpler Code)](https://www.youtube.com/watch?v=W2Thd9nKqmU)
