@@ -281,3 +281,202 @@ const doSomething = () : void => {
 - KISS: Keep It Simple, Stupid as a design principle states that most systems work best if they are kept simple rather than made complicated. Therefore, simplicity should be a key goal in design, and that unnecessary complexity should be avoided. 
 
 # Video #15 | [Simplicity: Not Just For Beginners (or How To Write Simpler Code)](https://www.youtube.com/watch?v=W2Thd9nKqmU)
+
+### What is simple code?
+- Expressive
+- Readable
+- Understandable
+- Unsurprising
+- Transparent
+- Self explanatory
+- Reassuring
+- Pleasant
+
+## Is it faster/correct to write simpler code?
+
+- No, it requires new habits, new ways of looking and most importantly: reviewing, revisiting, refactoring.
+- Simpler code is more readable, debuggable and often more correct too.
+- Staying consistent is the way to maintainable code.
+- Code that moves complexity to abstractions often has less bugs.
+- Library code is already tested and has thought of edge cases.
+- To get faster code you typically have to know and remember something about the language.
+- Try not to chose simplicity over performance **if** a real choice exists: Build then optimize.
+- Library code may be faster than what you would write yourself.
+- Unsurprising code is more maintainable code.
+- Expressive code is fun to work with.
+- Other people's code is **B-E-A-U-T-I-F-U-L**, embrace it! :D
+- True simplicity is very hard. You have do know in-and-out's of a programming language.
+
+### Steps:
+1. Getting a understanding of what simple code looks like.
+2. Try to code simply from the beginning.
+3. As it grows and when it becomes too complex, make it simpler.
+4. Maintain consistency.
+5. Good names really helps: avoid single character variable names.
+6. Short function with a proper name to hold a loop (since loops don't have names).
+7. Avoid really long list of parameters.
+8. If a function needs 10 parameters, then maybe it requires more than, maybe 3 functions that could be called with smaller parameter lists.
+9. Don't nest deeply - return early.
+10. Mark everything const that you possibly can. Having to keep track of more local variables that don't vary increases cognitive burden.
+11. Keep up with the standard/libraries.
+
+  > Programming is a social activity in which communication is a vital skill. The code you leave behind speaks.
+
+### Simplicity Paradox:
+
+1. The things you do to make code simpler can make it more complex.
+2. It is NOT POSSIBLE to write simple rules for how to write simple code.
+
+### Replace your complicated things with 
+- familiar idioms and language constructs.
+- Well known library classes and functions that **others will recognize**.
+- Appropriate abstraction that becomes **a thing to learn** in you code, moving complexity inside your abstraction.
+
+---
+
+# Video #16 | [Peter Hilton - How to write maintainable code](https://www.youtube.com/watch?v=6jmUmZX2pok)
+
+- Use a consistent coding style.
+- Keep up with new things and embrace it.
+- Good names for everything are the key to clean code but its hard. Use software tools (word games, thesaurus), practice, git gud!
+- Naming smells: be descriptive. 
+  - No abbreviations unless globally accepted. 
+  - Numeric suffixes. 
+  - Abstract names like `data`, `object`.
+  - Vague words: `getPrice`
+
+### How to name things:
+- Learn to recognize bad naming
+- Refactor - rename bad names to better names
+- Improve your vocabulary by reading or gaming.
+- Wield your thesaurus and dictionary.
+- Adopt better naming practices
+- Learn to write.
+
+- WRITE EXPLANATORY FUNCTIONAL TESTS
+
+### Write good comments
+
+Comments are part of the code, so maintain them!
+
+1. Try to write good code first
+2. Try to write a one-sentence comment
+3. Refactor the code(make it easier to explain)
+4. Delete unnecessary comments
+5. Rewrite bad comments (all good writing requires re-writing)
+6. Add detail where needed(which isn't often)
+
+DRY
+### The Rule of Three
+
+When you see duplication once, let it be because its hard to tell from just 2 occurances what the abstraction is. If you see the same things 3 times, then you refactor.
+
+- Apply **The Rule of Three** before you remove duplication.
+
+### Constantly improve the code
+
+Take the **Boy Scout Principle** seriously (actually enforce it)
+- Do code review on all changes
+- Recognize code smells
+- Refactor
+
+Accept that maintainable code costs more.Even if you can't win, you can lose more slowly.
+- Keep codebase small
+- Increase refactoring effort as it grows
+
+### Write a project introduction
+Write the minimum viable system documentation.
+README file in Github repo!
+
+- Explain the system's purpose (What is the business reason? Why are we here?)
+- Describe the scope (What defines what the system does and doesn't do?)
+- Summarise what it does (What does it actually do? What is it for?)
+
+---
+
+# Video #17 | [GOTO 2016 • Seven Secrets of Maintainable Codebases](https://www.youtube.com/watch?v=0oDporwhToQ)
+
+[Good Video!]
+
+- Focus on the code that really matters. Most of the files in a codebase are rarely needs maintenance over longer period of time.
+- When it comes to maintainable codebases, complexity isn't the problem atleast not on its own. We can't discard complexity entirely. We just to find when it matters and when it not.
+- Data Analysis of codebase: Github.
+
+---
+
+# Video #18 | [JavaScript Best Practices and Coding Conventions](https://www.youtube.com/watch?v=RMN_bkZ1KM0)
+
+1. Magic Number: Assigning a number with no clear meaning, example in a loop condition expression, replace it with a name constant.
+
+  ```js
+  const SECONDS_IN_A_DAY = 86400
+
+  for (let i = 0; i < SECONDS_IN_A_DAY; i++) {
+    // ...
+  }
+  ```
+2. Avoid deep nesting and instead use methods to return the same
+
+3. Stop writing comments, try to make code self-documenting. Code must speak for itself.
+
+4. Avoid large functions. One thing a time.
+
+5. Code repetition. Parameter destructing etc
+6. Variable Names, `camelCase` and use meaningful name. `data` is vague so be descriptive.
+7. Favor descriptive over concise.
+8. Use consistent verbs per concept.
+
+```js
+getQuestions; // get
+returnUsers // get
+retrieveUsers // get
+```
+
+9. Make booleans that read well in if-then statements. Ex: add prefixes like is, are, has, should, can etc
+
+10. Use nouns not verbs for classNames. They are something, they don't create something.
+
+11. Use PascalCase for className.
+
+12. Capitalize constant values. SNAKE_UPPERCASE
+
+13. Avoid one-letter variable names, can be used as index in small loops or small functions.
+
+# Video #19 | [Code Refactoring](https://www.youtube.com/watch?v=vhYK3pDUijk)
+
+### What is Refactoring?
+- Refactoring makes code understandable and easy to extend.
+- Refactoring makes it quicker to create complicated systems or add new features without introducing bugs.
+- Should not change the program in any tangible way
+- Re-writing code is not refactoring.
+- Refactoring itself doesn't directly benefit you. Instead it benefits you by enabling you to do more.
+- Refactoring is most commonly done as part of the maintenance/updating step.
+
+### Why should one Refactor?
+- Remove excess code so it is easier to understand & modify
+- Helps you understand others code
+- Eliminate the need to remember what old code does
+- Can write code quicker, add features quicker.
+
+### What is Bad Smells?
+- Duplicated Code
+- Long Methods (5-10 lines)
+- Complex Conditional Statements
+- Primitive Obsession: Using primitives over class objects
+- Indecent Exposure: Access modifiers, private classes
+- Solution Sprawl: Solution that is being used across multiple classes instead having them in one place
+- Alternative Classes with different interfaces
+- Lazy Classes: Don't do much on their own and their capabilities should be moved to a class
+- Large Classes: Too many responsibility, too many lazy class
+- Switch Statements
+- Combinatorial Explosions: Many methods that could be done in one method
+- Oddball Solutions: Solve the problem in may different ways, select the best and remove the duplicates.
+
+
+# Video #20 | [Code Refactoring - Return Fast](https://www.youtube.com/watch?v=lpB7PLSikw8)
+
+Fail Fast: If you have an error you should fail quickly, you shouldn't propagate this error into the program.
+
+Exit Point: Exit points a function should have. Don't really care but there are some who cares about it being only one.
+
+Returning Fast
