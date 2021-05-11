@@ -1,5 +1,7 @@
 # Clean-Code
 
+# TODO: Clean this up over this coming weekend
+
 # Video #2 | [5 Tips for Cleaner Code](https://www.youtube.com/watch?v=tBigGpLRMtU)
 
 
@@ -480,3 +482,164 @@ Fail Fast: If you have an error you should fail quickly, you shouldn't propagate
 Exit Point: Exit points a function should have. Don't really care but there are some who cares about it being only one.
 
 Returning Fast
+
+---
+
+# Video #21 | [10 Tips for Effective Code Review](https://www.youtube.com/watch?v=fatTnX8_ZRk)
+
+1. One issue, one PR: 
+```bash
+# what's shipping?
+git branch --merged
+
+# what's left to ship
+git branch --no-merged
+```
+2. Minimum TWO approvals before merge.
+3. Have 1.5x - 2.5x that number reviewers: Fewer reviewers find more defects and more reviewers spend less time.
+4. Use blame to pick reviewers.
+5. `@mention` specialists: pull them into one section of the code when they aren't assigned for the whole PR.
+6. Stuck in review? Make Tuesday and Thursday **Inbox Zero** days, i.e; no reviews and are for self and as soon as that is done, review PR.
+7. Move comments into code: Put review comments in the code or even better, refactor the code to make it explain the review comment.
+8. Build a team policy, as a team make a workflow, improve on it and enforce it.
+9. Add screenshot and UI/UX changes (gifs/video are even better): Incorporate non-technical stakeholders in review process as well.
+10. Keep it concise.
+    > Ask a programmer to review 10 lines of code, they will find 10 issues. Ask them to do 500 lines and they'll say it looks good.
+    >
+    > -- @Girayozil
+
+
+---
+
+# Video #22 | [Code Review Best Practices](https://www.youtube.com/watch?v=a9_0UUUNt-Y)
+
+## Introduction
+The goal is to ship the code, not to prove how clever you are.
+
+> Having opinions on code is an occupational Hazard!
+
+- Are we harder on other people's code than our own?
+   - We are more critical to the code when we read it than when we write it.
+   -  When we write code, we are trying to get job done.
+   -  When we read code, we have a different focus on that.
+- Different workflows
+  - Gateway Reviews: Final stage (At the end), Should have specific checks, does it do what it is supposed to do. Too late for design changes.
+  - Knowledge Sharing: Make team aware of changes, and discuss things while it can be in production.
+  - Early Design Feedback: Collaborate on code. Design Discuss.
+
+- Anti-Pattern
+   - Nit picking: Whitespaces should be automated.
+   - Design changes when the code works: Should NOT be in gateway review workflow as it could have taken quite a while to come up the solution, discussing with other team members and would be a waste of time.
+   - Inconsistent feedback: Reviewer should come up with a different feedback everytime.
+   - The Ghost Reviewer: Small PR nit-picking, huge PR, ghosting.
+   - Ping Pong review: Long back and forth suggestion and changes, happens due to poor understanding of what done looks like.
+- Developers hate code reviews
+
+## Why code review?
+- Ensure code meets standards: Enumerate what those standards are, styling.
+- Find bugs: Human code reviewers are not good at this.
+    - Automated Tests, compilers, Static analytics (e.g: sonar) are good at this.
+- Sharing Knowledge: The most important: Focus is on how easy it is to understand the code, not reject it.
+- Check code is understandable.
+- Ensure code does what it's supposed to.
+- Collaborate on design: Early, not at final stage.
+- Evolve application code: The files that are being worked on are cleaned alongside to remove technical debt.
+
+## When do you review?
+- During Implementation? Collaborate and evolve design.
+- When it's ready to merge? Gateway review, not in production, not merged into trunk yet.
+- After it's been merged? Like knowledge sharing code review.
+
+## When is the review complete?
+- When everyone agrees?
+- When a gatekeeper agrees?
+- When all comments are addressed?
+
+## Who reviews the code?
+- When juniors review the code that means you have written readable and understandable code. Helps juniors as well to get up to the speed.
+
+## Where to do reviews?
+- Pair programming
+- Showing code to a colleague at a computer
+- Mob reviewing in a conference room
+- Remote screen-sharing: have access to cursor
+- Using code review software: If the organization is big, for small sit downs are great. Software can be git PR, JetBrain's Upsource.
+
+## What to look for in a review?
+- Human reviewers should not be doing what could be automated.
+- Understand the constraints. Eg: latency.
+
+## How do you perform the review?
+- Automate everything that you can: Human code reviews are expensive in terms of time & money.
+- Submitting for review: 
+  - Reviews should be small, if big change push in small chunks daily,
+  -  annotate your code (comment your thinking process in git)
+ - Reviewing: 
+   - Should be clear WHO is reviewing.
+   - Respond in a timely fashion.
+   - Checklist of What to look for.
+ - Comments
+   - Bear in mind Why, When and What
+   - Be constructive, be nice!
+   - Be specific.
+ - Accept or Reject/Raise Concern
+   - Next steps should be clear
+ - Making changes
+   - Respond in timely fashion
+   - Respond to comments, acknowledge it
+ - Resolving
+   - The goal is to accept the review, is to go into the production
+   - Should be clear Who signs it off and when
+
+---
+
+# Video #23 | [Do THIS to Write Clean Code! | JavaScript Pro Tips (2021)](https://www.youtube.com/watch?v=ZI3q-_vjSZE)
+
+1. Declaring variables : `let a, b = 1`
+2. Assigning values : `let [a,b,c] = [1,2,3]`
+3. Naming Variable
+4. Destructing: 
+   ```javascript
+   const street = address.street;
+   const city = address.city;
+   const state = address.state;
+   const zipCode = address.zipCode;
+
+   // Instead do this 
+
+   const {street, city, state, zipCode} = address
+   ```
+
+5. Pass a object as argument and destruct them.
+
+    ```js
+    function doSomething({first, second, third})
+
+    // Doing this you don't have to remember the order of parameters being passed
+
+    doSomething({
+      first: 'I am first',
+      third: 'I am third',
+      second: 'I am second'
+    })
+    ```
+6. Default Arguments: 
+    ```js
+    function greetUser(msg = 'Hello') {
+      return msg
+    }
+
+    greetUser() // returns Hello 
+    greetUser('Hi') // returns Hi
+    ```
+7. Optional Chaining: 
+    ```js
+    const street = person && person.address && person.address.street;
+
+    // Instead do this
+    // undefined if checks fails at ?
+    const street = person?.address?.street
+    ```
+
+---
+
